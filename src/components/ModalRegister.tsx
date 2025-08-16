@@ -16,7 +16,7 @@ export default function ModalRegister() {
   const [gender, setGender] = useState("");
   const [genderError, setGenderError] = useState(false);
 
-  const [isUserAgreed, setIsUserAgreed] = useState(false);
+  const [UserAgree, setUserAgree] = useState(false);
   // ----------------------------------------------------------------
   const inputFnameOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFnameError(false);
@@ -54,6 +54,10 @@ export default function ModalRegister() {
   const cbBuyCapOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBuyCap(event.target.checked);
   };
+
+  const cbUserAgreed = (event:  React.ChangeEvent<HTMLInputElement>) => {
+    setUserAgree(event.target.checked);
+  }
 
   // ----------------------------------------------------------------
 
@@ -207,7 +211,7 @@ export default function ModalRegister() {
                 <input
                   className="me-2 form-check-input"
                   type="checkbox"
-                  onChange={(e) => setBuyBottle(e.target.checked)}
+                  onChange={cbBuyBottleOnChange}
                   checked={buyBottle}
                 />
                 <label className="form-check-label">Bottle 🍼 (200 THB)</label>
@@ -216,7 +220,7 @@ export default function ModalRegister() {
                 <input
                   className="me-2 form-check-input"
                   type="checkbox"
-                  onChange={(e) => setBuyShoes(e.target.checked)}
+                  onChange={cbBuyShoesOnChange}
                   checked={buyShoes}
                 />
                 <label className="form-check-label">Shoes 👟 (600 THB)</label>
@@ -225,11 +229,14 @@ export default function ModalRegister() {
                 <input
                   className="me-2 form-check-input"
                   type="checkbox"
-                  onChange={(e) => setBuyCap(e.target.checked)}
+                  onChange={cbBuyCapOnChange}
                   checked={buyCap}
                 />
                 <label className="form-check-label">Cap 🧢 (400 THB)</label>
               </div>
+              {isDiscounted && (
+              <span className="text-success d-block">(20% Discounted)</span> 
+            )}
             </div>
 
             <div className="alert alert-primary mt-3" role="alert">
@@ -241,28 +248,23 @@ export default function ModalRegister() {
               Total Payment : {computeTotalPayment().toLocaleString()} THB
               {/* Render below element conditionally when user get 20% discount */}
               {/* <span className="text-success d-block">(20% Discounted)</span> */}
-              {isDiscounted && (
-                <span className="text-success d-block">(20% Discounted)</span>
-              )}
             </div>
           </div>
           <div className="modal-footer">
             {/* Terms and conditions */}
             <div>
-              <input
-                className="me-2 form-check-input"
-                type="checkbox"
-                onChange={(e) => setIsUserAgreed(e.target.checked)}
-              />
-              I agree to the terms and conditions
+              <input className="me-2 form-check-input" type="checkbox" 
+              onChange={cbUserAgreed}
+              checked={UserAgree} />I agree
+              to the terms and conditions
             </div>
             {/* Register Button */}
             <button
               className="btn btn-success my-2"
               onClick={registerBtnOnClick}
-              disabled={!isUserAgreed}
               //You can embbed a state like below to disabled the button
               //disabled={isUserAgreed}
+              disabled={!UserAgree}
             >
               Register
             </button>
