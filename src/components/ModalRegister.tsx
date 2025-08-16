@@ -1,6 +1,8 @@
 import { use, useState } from "react";
-import { FaLessThanEqual } from "react-icons/fa";
+//import { FaLessThanEqual } from "react-icons/fa";
+
 export default function ModalRegister() {
+  use
   const [fname, setFname] = useState("");
   const [fnameError, setFnameError] = useState(false);
 
@@ -55,9 +57,9 @@ export default function ModalRegister() {
     setBuyCap(event.target.checked);
   };
 
-  const cbUserAgreed = (event:  React.ChangeEvent<HTMLInputElement>) => {
+  const cbUserAgreed = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserAgree(event.target.checked);
-  }
+  };
 
   // ----------------------------------------------------------------
 
@@ -235,8 +237,8 @@ export default function ModalRegister() {
                 <label className="form-check-label">Cap 🧢 (400 THB)</label>
               </div>
               {isDiscounted && (
-              <span className="text-success d-block">(20% Discounted)</span> 
-            )}
+                <span className="text-success d-block">(20% Discounted)</span>
+              )}
             </div>
 
             <div className="alert alert-primary mt-3" role="alert">
@@ -253,10 +255,13 @@ export default function ModalRegister() {
           <div className="modal-footer">
             {/* Terms and conditions */}
             <div>
-              <input className="me-2 form-check-input" type="checkbox" 
-              onChange={cbUserAgreed}
-              checked={UserAgree} />I agree
-              to the terms and conditions
+              <input
+                className="me-2 form-check-input"
+                type="checkbox"
+                onChange={cbUserAgreed}
+                checked={UserAgree}
+              />
+              I agree to the terms and conditions
             </div>
             {/* Register Button */}
             <button
