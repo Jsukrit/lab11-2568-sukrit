@@ -2,7 +2,7 @@ import { use, useState } from "react";
 //import { FaLessThanEqual } from "react-icons/fa";
 
 export default function ModalRegister() {
-  use
+  use;
   const [fname, setFname] = useState("");
   const [fnameError, setFnameError] = useState(false);
 
